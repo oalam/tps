@@ -4,38 +4,33 @@
  */
 package data;
 
-import domain.Employe;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author tom
  */
 public class EmployeManagerTest {
-    
-    public EmployeManagerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    EmployeManager manager;
+
     @Before
     public void setUp() {
+        manager = new EmployeManager();
+
+        manager.add(EmployeFactory.createEmploye("Bailet", "thomas", 300, true, 18));
+        manager.add(EmployeFactory.createEmploye("Jobs", "Steve", 600, false, 1));
+        manager.add(EmployeFactory.createEmploye("Gates", "Billou", 400, 1, 2, 3, 4));
     }
-    
+
     @After
     public void tearDown() {
+        manager = null;
     }
 
     /**
@@ -43,13 +38,8 @@ public class EmployeManagerTest {
      */
     @Test
     public void testGetPermanents() {
-	System.out.println("getPermanents");
-	EmployeManager instance = new EmployeManager();
-	List expResult = null;
-	List result = instance.getPermanents();
-	assertEquals(expResult, result);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+        System.out.println("getPermanents");
+        assertEquals(2, manager.getPermanents().size());
     }
 
     /**
@@ -57,13 +47,8 @@ public class EmployeManagerTest {
      */
     @Test
     public void testGetTemporaires() {
-	System.out.println("getTemporaires");
-	EmployeManager instance = new EmployeManager();
-	List expResult = null;
-	List result = instance.getTemporaires();
-	assertEquals(expResult, result);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+        System.out.println("getTemporaires");
+        assertEquals(1, manager.getTemporaires().size());
     }
 
     /**
@@ -71,13 +56,8 @@ public class EmployeManagerTest {
      */
     @Test
     public void testGetAllEmployes() {
-	System.out.println("getAllEmployes");
-	EmployeManager instance = new EmployeManager();
-	List expResult = null;
-	List result = instance.getAllEmployes();
-	assertEquals(expResult, result);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+        System.out.println("getAllEmployes");
+        assertEquals(3, manager.getAllEmployes().size());
     }
 
     /**
@@ -85,13 +65,10 @@ public class EmployeManagerTest {
      */
     @Test
     public void testGetTotalIndemnites() {
-	System.out.println("getTotalIndemnites");
-	EmployeManager instance = new EmployeManager();
-	double expResult = 0.0;
-	double result = instance.getTotalIndemnites();
-	assertEquals(expResult, result, 0.0);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+        System.out.println("getTotalIndemnites");
+
+        assertEquals(300.0, manager.geTotalIndemnitesBruit(), 0.0001);
+
     }
 
     /**
@@ -99,26 +76,8 @@ public class EmployeManagerTest {
      */
     @Test
     public void testGeTotalIndemnitesBruit() {
-	System.out.println("geTotalIndemnitesBruit");
-	EmployeManager instance = new EmployeManager();
-	double expResult = 0.0;
-	double result = instance.geTotalIndemnitesBruit();
-	assertEquals(expResult, result, 0.0);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
-    }
+        System.out.println("geTotalIndemnitesBruit");
 
-    /**
-     * Test of add method, of class EmployeManager.
-     */
-    @Test
-    public void testAdd() {
-	System.out.println("add");
-	Employe emp = null;
-	EmployeManager instance = new EmployeManager();
-	instance.add(emp);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
     }
 
     /**
@@ -126,12 +85,11 @@ public class EmployeManagerTest {
      */
     @Test
     public void testRemove() {
-	System.out.println("remove");
-	String nom = "";
-	EmployeManager instance = new EmployeManager();
-	instance.remove(nom);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+        System.out.println("remove");
+        manager.remove("Gates");
+        assertEquals(2, manager.getPermanents().size());
+        assertEquals(0, manager.getTemporaires().size());
+        assertEquals(2, manager.getAllEmployes().size());
     }
 
     /**
@@ -139,36 +97,15 @@ public class EmployeManagerTest {
      */
     @Test
     public void testCharger() {
-	System.out.println("charger");
-	String nomfichier = "";
-	EmployeManager instance = new EmployeManager();
-	instance.charger(nomfichier);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of enregistrer method, of class EmployeManager.
-     */
-    @Test
-    public void testEnregistrer() {
-	System.out.println("enregistrer");
-	String nomfichier = "";
-	EmployeManager instance = new EmployeManager();
-	instance.enregistrer(nomfichier);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of clear method, of class EmployeManager.
-     */
-    @Test
-    public void testClear() {
-	System.out.println("clear");
-	EmployeManager instance = new EmployeManager();
-	instance.clear();
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+        System.out.println("charger");
+        manager.enregistrer("temp.txt");
+        manager.clear();
+        assertEquals(0, manager.getPermanents().size());
+        assertEquals(0, manager.getTemporaires().size());
+        assertEquals(0, manager.getAllEmployes().size());
+        manager.charger("temp.txt");
+        assertEquals(2, manager.getPermanents().size());
+        assertEquals(1, manager.getTemporaires().size());
+        assertEquals(3, manager.getAllEmployes().size());
     }
 }

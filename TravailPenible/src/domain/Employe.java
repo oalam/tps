@@ -14,6 +14,9 @@ public abstract class Employe {
 
     // Constructeurs
     protected Employe(String nom, String prenom, int indiceBrut) {
+        if((indiceBrut <INDICE_BRUT_MIN) || (indiceBrut >INDICE_BRUT_MAX)){
+            throw new IllegalArgumentException("indice brut hors limites");
+        }
         this.nom = nom;
         this.prenom = prenom;
         this.indiceBrut = indiceBrut;
@@ -42,6 +45,16 @@ public abstract class Employe {
         this.indiceBrut = indiceBrut;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    
+    
+
     // Autres méthodes
     /**
      * calcule le montant de l'indemnité de travail pénible qui devra étre 
@@ -61,6 +74,13 @@ public abstract class Employe {
         System.out.println("Idemnité travail pénible : " + indemniteTravailPenible());
     }
 
+    @Override
+    public String toString() {
+        return nom + " " + prenom;
+    }
+
+    
+  
     /**
      * fournit un chaéne de caractéres correspondant au format
      * d'enregistrement de l'employé dans un fichier texte.
