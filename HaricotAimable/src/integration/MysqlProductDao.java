@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +23,13 @@ public class MysqlProductDao implements ProductDao {
 
     @Override
     public void create(Product p) {
+        Connection conn = MysqlUtilities.openConnection();
+        Savepoint sp = null;
         try {
-            Connection conn = MysqlUtilities.openConnection();
+
+            // begin transaction
+            conn.setAutoCommit(false);
+            sp = conn.setSavepoint();
 
             String insertProduct = "INSERT INTO haricot.product "
                     + "(category_id, `name`, price, stock_quantity, "
@@ -33,7 +39,7 @@ public class MysqlProductDao implements ProductDao {
             PreparedStatement stmt = conn.prepareStatement(insertProduct,
                     Statement.RETURN_GENERATED_KEYS);
 
-            stmt.setInt(1, p.getCategory().getId());
+            stmt.setLong(1, p.getCategory());
             stmt.setString(2, p.getName());
             stmt.setDouble(3, p.getPrice());
             stmt.setInt(4, p.getStockQuantity());
@@ -51,10 +57,26 @@ public class MysqlProductDao implements ProductDao {
                 System.out.println("inserted product with id = " + id);
             }
 
-            MysqlUtilities.closeConnection(conn);
+            // end transaction and commit data
+            conn.commit();
+
         } catch (SQLException ex) {
-            MysqlUtilities.printSQLException(ex);
-            Logger.getLogger(MysqlProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                // end transaction and rollback to save point
+                conn.rollback(sp);
+                MysqlUtilities.printSQLException(ex);
+                Logger.getLogger(MysqlProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex1) {
+                Logger.getLogger(MysqlProductDao.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(MysqlProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                MysqlUtilities.closeConnection(conn);
+            }
         }
     }
 
@@ -85,17 +107,18 @@ public class MysqlProductDao implements ProductDao {
 
                 long categoryId = rs.getLong("category_id");
 
-                String selectCategory = "SELECT * FROM haricot.category "
-                        + "WHERE id=" + categoryId;
+                /* String selectCategory = "SELECT * FROM haricot.category "
+                 + "WHERE id=" + categoryId;
 
-                ResultSet rs2 = stmt2.executeQuery(selectCategory);
-                Category c = new Category();
-                while (rs2.next()) {
-                    c.setId(rs2.getInt("id"));
-                    c.setName(rs2.getString("name"));
-                }
+                 ResultSet rs2 = stmt2.executeQuery(selectCategory);
+                 Category c = new Category();
+                 while (rs2.next()) {
+                 c.setId(rs2.getInt("id"));
+                 c.setName(rs2.getString("name"));
+                 }*/
 
-                p.setCategory(c);
+                p.setCategory(categoryId);
+                // c.getProducts().add(p);
 
                 System.out.println("read product " + p.toString());
             }
@@ -115,7 +138,8 @@ public class MysqlProductDao implements ProductDao {
 
             String sqlUpdate = "UPDATE haricot.product "
                     + "SET `name` = ?, `price` = ?, `stock_quantity` = ?, "
-                    + "`description` = ?, `photo_url` = ? WHERE id = ?;";
+                    + "`description` = ?, `photo_url` = ?, category_id = ?"
+                    + " WHERE id = ?;";
 
             PreparedStatement stmt = conn.prepareStatement(sqlUpdate,
                     Statement.RETURN_GENERATED_KEYS);
@@ -126,7 +150,8 @@ public class MysqlProductDao implements ProductDao {
             stmt.setInt(3, p.getStockQuantity());
             stmt.setString(4, p.getDescription());
             stmt.setString(5, p.getPhotoUrl());
-            stmt.setLong(6, p.getId());
+            stmt.setLong(6, p.getCategory());
+            stmt.setLong(7, p.getId());
             /* Date d = new java.util.Date();
              stmt.setTimestamp(1, new Timestamp(d.getTime()));
              */

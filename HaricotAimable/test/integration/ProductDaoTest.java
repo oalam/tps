@@ -50,7 +50,7 @@ public class ProductDaoTest {
     public void testCreate() {
         System.out.println("create");
 
-        
+
         // assuming that we have allready read category from db
         Category c = new Category();
         c.setName("meats");
@@ -64,36 +64,47 @@ public class ProductDaoTest {
         p.setPhotoUrl("http://chrispasset.wordpress.com/2011/11/05/simple-and-easy-preparation-of-a-good-steak/&docid=z7BN63ng0ecrXM&imgurl=http://chrispasset.files.wordpress.com/2011/11/mediumrare.jpg");
         p.setPrice(5.95);
         p.setStockQuantity(9);
-        p.setCategory(c);
+        p.setCategory(2);
+        // p.setCategory(c);
 
-        productList.add(p);
-        c.setProducts(productList);
+
+        // productList.add(p);
+        // c.setProducts(productList);
         dao.create(p);
+        
+        
+        
+        
+        
 
         Product p2 = new Product();
         p2.setId(p.getId());
-        
+
         dao.read(p2);
         assertEquals(p, p2);
-        
+
         // test delete
         dao.delete(p);
-        
+
         Product p3 = new Product();
         p3.setId(p.getId());
         dao.read(p3);
-        assertNotSame(p, p3);
-        
+        //    assertNotSame(p,p3);
+        assertNotNull(p);
+        assertEquals(false, p.equals(p3));
+
+        // test update
         dao.create(p);
         p.setName("beefsteak");
-        
-        
-        // test update
         dao.update(p);
         p3.setId(p.getId());
         dao.read(p3);
         assertEquals("beefsteak", p3.getName());
-        
+
         dao.delete(p);
+        
+        
+        
+        
     }
 }

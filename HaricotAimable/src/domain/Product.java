@@ -16,7 +16,7 @@ public class Product {
     private String photoUrl;
     private double price;
     private int stockQuantity;
-    private Category category;
+    private long category_id;
 
     public Product( String name, String description, String photoUrl, double price, int stockQuantity) {
         this.description = description;
@@ -63,12 +63,12 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public Category getCategory() {
-        return category;
+    public long getCategory() {
+        return category_id;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(long category_id) {
+        this.category_id = category_id;
     }
 
     public void setDescription(String description) {
@@ -96,7 +96,7 @@ public class Product {
         hash = 53 * hash + Objects.hashCode(this.photoUrl);
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
         hash = 53 * hash + this.stockQuantity;
-        hash = 53 * hash + Objects.hashCode(this.category);
+     //   hash = 53 * hash + Objects.hashCode(this.category);
         return hash;
     }
 
@@ -127,7 +127,7 @@ public class Product {
         if (this.stockQuantity != other.stockQuantity) {
             return false;
         }
-        if (!Objects.equals(this.category, other.category)) {
+        if (!Objects.equals(this.category_id, other.category_id)) {
             return false;
         }
         return true;
@@ -135,7 +135,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", description=" + description + ", name=" + name + ", photoUrl=" + photoUrl + ", price=" + price + ", stockQuantity=" + stockQuantity + ", category=" + category + '}';
+        return "Product{" + "id=" + id + ", description=" + description + ", name=" + name + ", photoUrl=" + photoUrl + ", price=" + price + ", stockQuantity=" + stockQuantity + ", category=" + category_id + '}';
     }
 
     
