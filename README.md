@@ -1,4 +1,4 @@
 projets-java
 ============
 
-Les projets d'étude
+Les projets d'étude pour pratiquer.
