@@ -9,9 +9,11 @@
     </head>
     <body>
         <h1>Bienvenue sur la boutique en ligne du Haricot!</h1>
-        
-        
-        <s:url id="url" action="category"/>
-        <s:a href="%{url}">list product from category</s:a>
+
+        <s:form action="category">
+            <s:select list="categories" name="selectedCat" listKey="id" listValue="name"/>
+            <s:submit value="list products"/>
+        </s:form>
+    
     </body>
 </html>

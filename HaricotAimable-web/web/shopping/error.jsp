@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 29 oct. 2012, 16:57:07
+    Document   : error
+    Created on : 30 oct. 2012, 09:32:11
     Author     : adminl
 --%>
 
@@ -10,11 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>JSP Page</title>
-        <meta http-equiv="REFRESH" content="0;url=shopping/welcome.action">
-    </HEAD>
-</head>
-<body>
-    <h1>Bienvenue sur la boutique en ligne du Haricot!</h1>
-
-</body>
+    </head>
+    <body>
+        <h1>error place order</h1>
+    </body>
 </html>
