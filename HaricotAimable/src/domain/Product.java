@@ -18,14 +18,14 @@ public class Product {
     private int stockQuantity;
     private long category_id;
 
-    public Product( String name, String description, String photoUrl, double price, int stockQuantity) {
+    public Product( String name, String description, String photoUrl, double price, int stockQuantity, int category_id) {
         this.description = description;
         this.name = name; 
         this.photoUrl = photoUrl;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        
-        //this.id = IdGenerator.getNextId();
+        this.category_id = category_id;
+        this.id = IdGenerator.getNextId();
     }
 
     public Product() {

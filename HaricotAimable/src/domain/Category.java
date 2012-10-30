@@ -13,11 +13,12 @@ import utils.IdGenerator;
  */
 public class Category {
 
-    private int id = IdGenerator.getNextId();
+    private int id ;//= IdGenerator.getNextId();
     private String name = "";
     public List<Product> products = new ArrayList<>();
 
-    public Category(String name) {
+    public Category(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 

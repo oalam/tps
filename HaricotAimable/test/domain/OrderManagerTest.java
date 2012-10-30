@@ -57,10 +57,10 @@ public class OrderManagerTest {
         // Set basket content
         ShoppingBasket cart = new ShoppingBasket();
         Product milk = new Product("milk", "good fresh milk",
-                "http://milk.com", 0.95, 50);
+                "http://milk.com", 0.95, 50,0);
 
         Product cream = new Product("cream", "good fresh cream",
-                "http://cream.com", 1.95, 10);
+                "http://cream.com", 1.95, 10,0);
 
         cart.addProduct(milk);
         cart.addProduct(cream);

@@ -4,6 +4,8 @@
  */
 package integration;
 
+import dao.MysqlProductDao;
+import dao.ProductDao;
 import domain.Category;
 import domain.Product;
 import java.util.ArrayList;
@@ -70,7 +72,7 @@ public class ProductDaoTest {
 
         // productList.add(p);
         // c.setProducts(productList);
-        dao.create(p);
+      /*  dao.create(p);
         
         
         
@@ -104,7 +106,7 @@ public class ProductDaoTest {
         dao.delete(p);
         
         
-        
+        */
         
     }
 }

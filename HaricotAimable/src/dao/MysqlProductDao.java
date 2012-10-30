@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package integration;
+package dao;
 
 import domain.Category;
 import domain.Product;
@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class MysqlProductDao implements ProductDao {
 
-    @Override
+   
     public void create(Product p) {
         Connection conn = MysqlUtilities.openConnection();
         Savepoint sp = null;
@@ -80,7 +81,7 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-    @Override
+    
     public void read(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();
@@ -131,7 +132,7 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-    @Override
+   
     public void update(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();
@@ -164,7 +165,7 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-    @Override
+   
     public void delete(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();
@@ -184,4 +185,14 @@ public class MysqlProductDao implements ProductDao {
         }
     }
     // public List<Product> find
+
+    @Override
+    public List<Product> getProductsByCategoryId(int categoryId) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Product getProductById(int productId) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

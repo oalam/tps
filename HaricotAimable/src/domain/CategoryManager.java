@@ -19,10 +19,10 @@ public class CategoryManager {
     }
 
     private CategoryManager() {
-        categories.add(new Category("Dairies"));
-        categories.add(new Category("Meat"));
-        categories.add(new Category("Vegetables"));
-        categories.add(new Category("Bakery"));
+        categories.add(new Category(0,"Dairies"));
+        categories.add(new Category(1,"Meat"));
+        categories.add(new Category(2,"Vegetables"));
+        categories.add(new Category(3,"Bakery"));
     }
 
     public Category getCategoryById(int categoryId) {

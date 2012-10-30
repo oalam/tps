@@ -53,10 +53,10 @@ public class ShoppingBasketTest {
                 creamQuantity * creamPrice;
 
         Product milk = new Product("milk", "good fresh milk",
-                "http://milk.com", milkPrice, 50);
+                "http://milk.com", milkPrice, 50,0);
 
         Product cream = new Product("cream", "good fresh cream",
-                "http://cream.com", creamPrice, 10);
+                "http://cream.com", creamPrice, 10,0);
 
 
         cart.addProduct(milk);

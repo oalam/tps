@@ -113,10 +113,10 @@ public class CategoryManagerTest {
 
         // ajout de produits
         dairies.getProducts().add(new Product("milk", "good fresh milk",
-                "http://milk.com", 0.95, 50));
+                "http://milk.com", 0.95, 50,0));
 
         dairies.getProducts().add(new Product("cream", "good fresh cream",
-                "http://cream.com", 2.95, 10));
+                "http://cream.com", 2.95, 10,0));
 
         int productCount = dairies.getProducts().size();
         assertEquals(intialProductCount + 2, productCount);
