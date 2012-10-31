@@ -17,5 +17,7 @@
         </s:form>
         
         
+        order total : <s:property value="#session['cart'].total"/>
+        
     </body>
 </html>

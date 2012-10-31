@@ -13,7 +13,7 @@ public class ShoppingBasket {
     private List<ShoppingBasketItem> items = new ArrayList<>();
 
     public void addProduct(Product product) {
-
+        System.out.println("ShoppingBasket add = " + product.getName());
         for (ShoppingBasketItem item : items) {
             if (item.getProduct().getId() == product.getId()) {
                 // update quantity ?

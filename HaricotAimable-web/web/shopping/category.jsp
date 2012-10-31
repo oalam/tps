@@ -21,8 +21,8 @@
  
 
         <s:form action="category">
-            <s:select label="categories" list="categories" name="selectedCat" listKey="id" listValue="name"/>
-            <s:submit value="list products"/>
+            <s:select label="categories" list="categories" name="selectedCat" listKey="id" listValue="name" onchange="this.form.submit()"/>
+
         </s:form>
         
         <ul>
