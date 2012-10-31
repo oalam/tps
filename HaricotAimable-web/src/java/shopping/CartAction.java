@@ -20,16 +20,13 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class CartAction extends ActionSupport implements SessionAware {
 
-    
     private Map<String, Object> map;
-            
+
     @Override
     public void setSession(Map<String, Object> map) {
         this.map = map;
     }
-    
-    
-    private int productId;
+    private int productId = -1;
     private int selectedCat;
 
     public int getSelectedCat() {
@@ -51,22 +48,30 @@ public class CartAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() {
 
-        ShoppingBasket cart = (ShoppingBasket)map.get("cart");
-        
-        if(cart == null){
+        ShoppingBasket cart = (ShoppingBasket) map.get("cart");
+
+        if (cart == null) {
             cart = new ShoppingBasket();
             map.put("cart", cart);
         }
-     
+
         ProductDao productDao = new MockProductDao();
         Product product = productDao.getProductById(productId);
 
-        System.out.println("add product = " + product.getName());
+        if (product != null) {
+            cart.addProduct(product);
+            cart.updateProductQuantity(product, 1);
 
 
-        cart.addProduct(product);
-        cart.updateProductQuantity(product, 1);
-        
+
+
+
+
+            map.put("product", product);
+        }
+
+
+
         return SUCCESS;
 
     }

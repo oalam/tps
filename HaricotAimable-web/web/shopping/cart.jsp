@@ -16,7 +16,7 @@
             <s:submit value="proceed to checkout"/>
         </s:form>
         
-        
+        current product : <s:property value="#session['product'].name"/><br/>
         order total : <s:property value="#session['cart'].total"/>
         
     </body>
