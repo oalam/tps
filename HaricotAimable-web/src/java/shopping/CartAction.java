@@ -5,8 +5,6 @@
 package shopping;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Validateable;
-import com.opensymphony.xwork2.ValidationAware;
 import dao.MockProductDao;
 import dao.ProductDao;
 import domain.Product;
@@ -28,6 +26,7 @@ public class CartAction extends ActionSupport implements SessionAware {
     }
     private int productId = -1;
     private int selectedCat;
+    private int quantity;
 
     public int getSelectedCat() {
         return selectedCat;
@@ -43,6 +42,14 @@ public class CartAction extends ActionSupport implements SessionAware {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
@@ -61,18 +68,36 @@ public class CartAction extends ActionSupport implements SessionAware {
         if (product != null) {
             cart.addProduct(product);
             cart.updateProductQuantity(product, 1);
-
-
-
-
-
-
-            map.put("product", product);
         }
-
-
 
         return SUCCESS;
 
+    }
+
+    public String exit() {
+
+
+        map.clear();
+
+
+        return SUCCESS;
+    }
+
+    public String update() {
+
+
+        ShoppingBasket cart = (ShoppingBasket) map.get("cart");
+
+
+        ProductDao productDao = new MockProductDao();
+        Product product = productDao.getProductById(productId);
+
+        if (product != null) {
+            cart.addProduct(product);
+            cart.updateProductQuantity(product, quantity);
+        }
+
+
+        return SUCCESS;
     }
 }

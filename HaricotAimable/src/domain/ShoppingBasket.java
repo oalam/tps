@@ -16,7 +16,8 @@ public class ShoppingBasket {
         System.out.println("ShoppingBasket add = " + product.getName());
         for (ShoppingBasketItem item : items) {
             if (item.getProduct().getId() == product.getId()) {
-                // update quantity ?
+              /*  int oldQuantity = item.getQuantity();
+                item.updateQuantity(++oldQuantity);*/
                 return;
             }
         }
@@ -45,7 +46,7 @@ public class ShoppingBasket {
         // remove outside the for loop
         // for security sake
         if(itemToRemove != null){
-            //items.remove(itemToRemove);
+            items.remove(itemToRemove);
         }
     }
 

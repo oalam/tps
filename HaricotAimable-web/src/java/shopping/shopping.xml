@@ -28,7 +28,7 @@
        
        
         <action name="addToCart" class="shopping.CartAction">
-           <result type="redirectAction">
+            <result type="redirectAction">
                 <param name="selectedCat">${selectedCat}</param>
                 <param name="actionName">category</param>
                 
@@ -39,22 +39,21 @@
             <result>/shopping/cart.jsp</result>
         </action>
         
-        <action name="updateCart" class="shopping.CartAction" >
-            <result type="redirectAction">
-                <param name="selectedCat">${selectedCat}</param>
-                <param name="actionName">viewCart</param>
-                
-            </result>
+        <action name="updateCart" class="shopping.CartAction" method="update">
+            <result>/shopping/cart.jsp</result>
         </action>
 
 
+        <action name="clearCart" class="shopping.CartAction" method="exit">
+            <result>/shopping/cart.jsp</result>
+        </action>
 
 
-        <action name="checkout" class="shopping.Checkout">
+        <action name="checkout" class="shopping.CheckoutAction">
             <result>/shopping/checkout.jsp</result>
         </action>
         
-        <action name="placeOrder" class="shopping.Checkout">
+        <action name="placeOrder" class="shopping.CheckoutAction">
             <result name="success">/shopping/confirmation.jsp</result>
             <result name="error">/shopping/error.jsp</result>
         </action>
