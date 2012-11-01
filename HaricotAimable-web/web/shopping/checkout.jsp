@@ -16,13 +16,15 @@
 
 
 
-            <s:form action="purchase" >
+            <s:form action="checkout" validate="true">
 
-                <s:textfield name="user"
+                <s:textfield name="customer.name" label="Name"/>
+		<s:textarea name="customer.address" label="Address"/>
+		<s:textfield name="customer.paymentInfos" label="Credit card"/>
 
 
 
-                <s:submit value="purchase"/>
+                <s:submit value="Purchase"/>
             </s:form>   
         </div>
 

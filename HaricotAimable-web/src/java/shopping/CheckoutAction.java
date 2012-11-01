@@ -24,35 +24,9 @@ public class CheckoutAction extends ActionSupport implements SessionAware {
     public void setSession(Map<String, Object> map) {
         this.map = map;
     }
-    private Customer customer;
+    private Customer customer = new Customer();
     private Order order;
-    private String address;
-    private String paiementInfo;
-    private String name;
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPaiementInfo() {
-        return paiementInfo;
-    }
-
-    public void setPaiementInfo(String paiementInfo) {
-        this.paiementInfo = paiementInfo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Customer getCustomer() {
         return customer;
@@ -75,7 +49,8 @@ public class CheckoutAction extends ActionSupport implements SessionAware {
         ShoppingBasket cart = (ShoppingBasket) map.get("cart");
         OrderManager orderManager = new OrderManager();
 
-        order = orderManager.placeOrder(paiementInfo, address, name, cart);
+	
+        order = orderManager.placeOrder(customer, cart);
         return SUCCESS;
     }
 }

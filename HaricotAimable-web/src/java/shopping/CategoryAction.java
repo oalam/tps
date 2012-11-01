@@ -13,55 +13,61 @@ import domain.Category;
 import domain.Product;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author adminl
  */
-public class CategoryAction extends ActionSupport {
+public class CategoryAction extends ActionSupport implements SessionAware {
 
+    private Map<String, Object> map;
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+	this.map = map;
+    }
     // properties
     private List<Category> categories = new ArrayList<Category>();
-    private int selectedCat;
     private List<Product> products = new ArrayList<Product>();
-
+    private Integer currentCategory = -1;
     // private daos
     private CategoryDao categoryDao = new MockCategoryDao();
     private ProductDao productDao = new MockProductDao();
-    
-    
+
     @Override
     public String execute() {
-        
-        categories = categoryDao.getAllCategories();
-        products = productDao.getProductsByCategoryId(selectedCat);
 
-        return SUCCESS;
+	categories = categoryDao.getAllCategories();
+	products = productDao.getProductsByCategoryId(getCurrentCategory());
+
+	return SUCCESS;
 
     }
 
     public List<Category> getCategories() {
-        return categories;
+	return categories;
     }
 
     public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-
-    public int getSelectedCat() {
-        return selectedCat;
-    }
-
-    public void setSelectedCat(int selectedCat) {
-        this.selectedCat = selectedCat;
+	this.categories = categories;
     }
 
     public List<Product> getProducts() {
-        return products;
+	return products;
     }
 
     public void setProducts(List<Product> products) {
-        this.products = products;
+	this.products = products;
+    }
+
+    public Integer getCurrentCategory() {
+	return (Integer) map.get("currentCategory");
+    }
+
+    public void setCurrentCategory(Integer currentCategory) {
+	this.currentCategory = currentCategory;
+	map.put("currentCategory", currentCategory);
     }
 }

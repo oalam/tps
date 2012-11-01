@@ -2,21 +2,20 @@
 		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
     
-    <field name="amount">
-        <field-validator type="int">
-            <param name="min">1</param>
-            <param name="max">1000</param>
-            <message>amount must be between ${min} and ${max}, current value is ${rate}.</message>
-        </field-validator>
-    </field>
-    
-    
-    <field name="rate">
-        <field-validator type="double">
-            <param name="minExclusive">0.01</param>
-            <param name="maxExclusive">99.99</param>
-            <message>rate must be between ${minExclusive} and ${maxExclusive}, current value is ${rate}.</message>
-        </field-validator>
+    <field name="customer.name">
+        <field-validator type="required">
+          <message>You must enter a value.</message>
+      </field-validator>
     </field>
   
+  <field name="customer.address">
+        <field-validator type="required">
+          <message>You must enter a value.</message>
+      </field-validator>
+    </field>
+    <field name="customer.paymentInfos">
+        <field-validator type="required">
+          <message>You must enter a value.</message>
+      </field-validator>
+    </field>
 </validators>

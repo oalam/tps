@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <s:head/>
         <link rel="stylesheet" href="../styles/styles.css" type="text/css" />
@@ -13,7 +13,9 @@
         <h1>Display all products </h1>
         <div class="blue">
             <s:form action="category">
-                <s:select  list="categories" name="selectedCat" listKey="id" listValue="name" onchange="this.form.submit()"/>
+                <s:select  list="categories" name="currentCategory" 
+			   listKey="id" listValue="name" 
+			   onchange="this.form.submit()"/>
             </s:form>
         </div>
 
@@ -47,9 +49,9 @@
 
         <div class="blue">
             <s:a action="welcome">Home</s:a> | 
-            <s:property value="#session['cart'].items.size"/> products in 
-            <s:a action="viewCart"> Cart, </s:a>
-            <strong>total <s:property value="#session['cart'].total"/></strong>
+	    <s:a action="viewCart">Proceed to checkout</s:a> | 
+            <s:property value="#session['cart'].items.size"/> products for a 
+	    total of <s:property value="#session['cart'].total"/>
         </div>
 
 

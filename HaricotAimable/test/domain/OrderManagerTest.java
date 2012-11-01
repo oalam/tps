@@ -73,17 +73,16 @@ public class OrderManagerTest {
         int oldOrderCount = orderMgr.getAllOrders().size();
 
         try {
-            Order newOrder = orderMgr.placeOrder(payementInfos, address, name, cart);
+	    Customer cust = new Customer( name, address, payementInfos);
+            Order newOrder = orderMgr.placeOrder(cust, cart);
 
             // Make sure order has been placed
             assertNotNull(newOrder);
 
             // Make sure this order contains a valid Customer
-            Customer cust = newOrder.getCustomer();
-            assertNotNull(cust);
-            assertEquals(name, cust.getName());
-            assertEquals(payementInfos, cust.getPaymentInfos());
-            assertEquals(address, cust.getAddress());
+            Customer cust2 = newOrder.getCustomer();
+            assertNotNull(cust2);
+            assertEquals(cust, cust2);
 
             // Verify the ordered products
             List<OrderedProduct> orderedProds = newOrder.getOrderedProducts();

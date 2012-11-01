@@ -24,17 +24,10 @@ public class CartAction extends ActionSupport implements SessionAware {
     public void setSession(Map<String, Object> map) {
         this.map = map;
     }
+    
     private int productId = -1;
-    private int selectedCat;
     private int quantity;
 
-    public int getSelectedCat() {
-        return selectedCat;
-    }
-
-    public void setSelectedCat(int selectedCat) {
-        this.selectedCat = selectedCat;
-    }
 
     public int getProductId() {
         return productId;

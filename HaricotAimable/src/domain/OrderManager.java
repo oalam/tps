@@ -10,12 +10,11 @@ import java.util.List;
  */
 public class OrderManager {
     
-    private List<Order> orders = new ArrayList<>();
+    private static List<Order> orders = new ArrayList<>();
 
-    public Order placeOrder(String payementInfos, String address, String name,
-            ShoppingBasket cart) throws ProductStockException {
+    public Order placeOrder(Customer cust, ShoppingBasket cart) 
+	    throws ProductStockException {
 
-        Customer cust = new Customer(name, address, payementInfos);
         Order order = new Order(cust);
 
         for (ShoppingBasketItem item : cart.getItems()) {
