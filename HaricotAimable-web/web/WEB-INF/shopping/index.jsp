@@ -13,7 +13,7 @@
         <h1>La boutique du Haricot</h1>
 
         <div class="blue">
-	    Browse the catalog.
+	    <h2>Browse the catalog.</h2>
             <s:form action="category">
                 <s:select list="categories" 
 			  name="currentCategory"

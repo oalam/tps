@@ -11,13 +11,13 @@
     </head>
     <body>
         <h1>Content of the shopping cart</h1>
+	<div class="blue">
+	    <s:set name="emptyCart" value="%{#session['cart'].items.size = 0}"/>
+	    <s:if test="%{!emptyCart}">
 
-	<s:set name="emptyCart" value="%{#session['cart'].items.size = 0}"/>
-	<s:if test="%{!emptyCart}">
 
 
 
-	    <div class="blue">
 
 		<table border="0" >
 		    <thead>
@@ -56,22 +56,22 @@
 		    </tbody>
 		</table>
 
-	    </div>
-	</s:if>
-	<s:else>
-	    <div class="blue">shopping cart is empty</div>
-	</s:else>
 
-        <div class="blue">
-            <s:a action="welcome">Home</s:a> | 
+	    </s:if>
+	    <s:else>
+		shopping cart is empty
+	    </s:else>
+        </div>
+	    
+	<div class="nav">
+	    <s:a action="welcome">Home</s:a> | 
             <s:a action="category">Continue shopping</s:a>
 	    <s:if test="%{!emptyCart}"> | 
 		<s:a action="clearCart">Clear cart</s:a> | 
 		<s:a action="checkout">Purchase</s:a> | 
 		<strong>order total : <s:property value="#session['cart'].total"/></strong>
 	    </s:if>
-        </div>
-
+	</div>
 
 
     </body>

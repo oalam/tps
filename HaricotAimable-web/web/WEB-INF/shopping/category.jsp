@@ -17,10 +17,7 @@
 			   listKey="id" listValue="name" 
 			   onchange="this.form.submit()"/>
             </s:form>
-        </div>
 
-
-        <div class="blue">
             <ul>
 
                 <s:iterator value="products">
@@ -39,15 +36,8 @@
                 </s:iterator>
 
             </ul>
-
-        </div>
-
-        <div class="blue">
-
-        </div>
-
-
-        <div class="blue">
+	</div>
+	<div class="nav">
             <s:a action="welcome">Home</s:a>
 	    <s:if test="%{#session['cart'].items.size != 0}"> | 
 		<s:a action="viewCart">Proceed to checkout</s:a> | 
@@ -55,18 +45,6 @@
 		total of <s:property value="#session['cart'].total"/>
 	    </s:if>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
     </body>
 </html>
