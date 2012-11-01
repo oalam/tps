@@ -66,6 +66,7 @@
             <s:a action="welcome">Home</s:a> | 
             <s:a action="category">Continue shopping</s:a>
 	    <s:if test="%{!emptyCart}"> | 
+		<s:a action="clearCart">Clear cart</s:a> | 
 		<s:a action="checkout">Purchase</s:a> | 
 		<strong>order total : <s:property value="#session['cart'].total"/></strong>
 	    </s:if>

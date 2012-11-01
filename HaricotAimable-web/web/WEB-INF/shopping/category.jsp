@@ -27,14 +27,14 @@
                     <li><s:property value="name"/> - 
                         <s:property value="description"/> -
                         <s:property value="%{getText('format.number',{'price'})}"/>
-                        
+
                         <s:url id="url" action="addToCart">
                             <s:param name="productId" value="id"/>
                             <s:param name="selectedCat" value="selectedCat"/>
                         </s:url>
                         <s:a href="%{url}">add to cart</s:a><br/>
 
-                    </li>
+		    </li>
 
                 </s:iterator>
 
@@ -43,16 +43,18 @@
         </div>
 
         <div class="blue">
-             
+
         </div>
 
 
         <div class="blue">
-            <s:a action="welcome">Home</s:a> | 
-	    <s:a action="viewCart">Proceed to checkout</s:a> | 
-            <s:property value="#session['cart'].items.size"/> products for a 
-	    total of <s:property value="#session['cart'].total"/>
-        </div>
+            <s:a action="welcome">Home</s:a>
+	    <s:if test="%{#session['cart'].items.size != 0}"> | 
+		<s:a action="viewCart">Proceed to checkout</s:a> | 
+		<s:property value="#session['cart'].items.size"/> products for a 
+		total of <s:property value="#session['cart'].total"/>
+	    </s:if>
+	</div>
 
 
 

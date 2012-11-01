@@ -29,8 +29,8 @@
         </div>
 
         <div class="blue">
-            <s:a action="welcome">Home</s:a> | 
-            <s:a action="category">continue shopping</s:a>
+            <s:a action="clearCart">Cancel</s:a> | 
+            <s:a action="category">Continue shopping</s:a>
         </div>
     </body>
 </html>

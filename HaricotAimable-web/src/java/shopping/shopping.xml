@@ -11,43 +11,43 @@
         
         
 	<action name="welcome" class="shopping.CategoryAction">
-	    <result>/shopping/index.jsp</result>
+	    <result>/WEB-INF/shopping/index.jsp</result>
 	    <result name="error">/shopping/error.jsp</result>
 	</action>
         
 	<action name="category" class="shopping.CategoryAction">
-	    <result>/shopping/category.jsp</result>
-	    <result name="error">/shopping/error.jsp</result>
+	    <result>/WEB-INF/shopping/category.jsp</result>
+	    <result name="error">/WEB-INF/shopping/error.jsp</result>
 	</action>   
        
        
 	<action name="addToCart" class="shopping.CartAction">
 	    <result type="redirectAction">category</result>
-	    <result name="error">/shopping/error.jsp</result>
+	    <result name="error">/WEB-INF/shopping/error.jsp</result>
 	</action>
        
 	<action name="viewCart" class="shopping.CartAction">
-	    <result>/shopping/cart.jsp</result>
-	    <result name="error">/shopping/error.jsp</result>
+	    <result>/WEB-INF/shopping/cart.jsp</result>
+	    <result name="error">/WEB-INF/shopping/error.jsp</result>
 	</action>
         
 	<action name="updateCart" class="shopping.CartAction" method="update">
-	    <result>/shopping/cart.jsp</result>
-	    <result name="error">/shopping/error.jsp</result>
+	    <result>/WEB-INF/shopping/cart.jsp</result>
+	    <result name="error">/WEB-INF/shopping/error.jsp</result>
 	</action>
 
 
-	<action name="clearCart" class="shopping.CartAction" method="exit">
-	    <result>/shopping/cart.jsp</result>
-	    <result name="error">/shopping/error.jsp</result>
+	<action name="clearCart" class="shopping.CartAction" method="clear">
+	    <result type="redirectAction">category</result>
+	    <result name="error">/WEB-INF/shopping/error.jsp</result>
 	</action>
 
 
 
 	<action name="checkout" class="shopping.CheckoutAction">
-	    <result name="input">/shopping/checkout.jsp</result>
-	    <result name="success">/shopping/confirmation.jsp</result>
-	    <result name="error">/shopping/error.jsp</result>
+	    <result name="input">/WEB-INF/shopping/checkout.jsp</result>
+	    <result name="success">/WEB-INF/shopping/confirmation.jsp</result>
+	    <result name="error">/WEB-INF/shopping/error.jsp</result>
 	    <exception-mapping exception="domain.ProductStockException" result="error"/>
 	</action>
         

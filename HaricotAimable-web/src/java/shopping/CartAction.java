@@ -22,75 +22,71 @@ public class CartAction extends ActionSupport implements SessionAware {
 
     @Override
     public void setSession(Map<String, Object> map) {
-        this.map = map;
+	this.map = map;
     }
-    
     private int productId = -1;
     private int quantity;
 
-
     public int getProductId() {
-        return productId;
+	return productId;
     }
 
     public void setProductId(int productId) {
-        this.productId = productId;
+	this.productId = productId;
     }
 
     public int getQuantity() {
-        return quantity;
+	return quantity;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+	this.quantity = quantity;
     }
 
     @Override
     public String execute() {
 
-        ShoppingBasket cart = (ShoppingBasket) map.get("cart");
+	ShoppingBasket cart = (ShoppingBasket) map.get("cart");
 
-        if (cart == null) {
-            cart = new ShoppingBasket();
-            map.put("cart", cart);
-        }
+	if (cart == null) {
+	    cart = new ShoppingBasket();
+	    map.put("cart", cart);
+	}
 
-        ProductDao productDao = new MockProductDao();
-        Product product = productDao.getProductById(productId);
+	ProductDao productDao = new MockProductDao();
+	Product product = productDao.getProductById(productId);
 
-        if (product != null) {
-            cart.addProduct(product);
-            cart.updateProductQuantity(product, 1);
-        }
+	if (product != null) {
+	    cart.addProduct(product);
+	    cart.updateProductQuantity(product, 1);
+	}
 
-        return SUCCESS;
+	return SUCCESS;
 
     }
 
-    public String exit() {
+    public String clear() {
 
+	map.put("cart", new ShoppingBasket());
 
-        map.clear();
-
-
-        return SUCCESS;
+	return SUCCESS;
     }
 
     public String update() {
 
 
-        ShoppingBasket cart = (ShoppingBasket) map.get("cart");
+	ShoppingBasket cart = (ShoppingBasket) map.get("cart");
 
 
-        ProductDao productDao = new MockProductDao();
-        Product product = productDao.getProductById(productId);
+	ProductDao productDao = new MockProductDao();
+	Product product = productDao.getProductById(productId);
 
-        if (product != null) {
-            cart.addProduct(product);
-            cart.updateProductQuantity(product, quantity);
-        }
+	if (product != null) {
+	    cart.addProduct(product);
+	    cart.updateProductQuantity(product, quantity);
+	}
 
 
-        return SUCCESS;
+	return SUCCESS;
     }
 }
