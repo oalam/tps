@@ -2,8 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package entity;
 
+import entity.Order;
+import entity.ShoppingBasket;
+import entity.ProductStockException;
+import entity.Customer;
+import entity.OrderManager;
+import entity.OrderedProduct;
+import entity.Product;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,13 +61,14 @@ public class OrderManagerTest {
         String address = "10 rue des rosiers 75001 PARIS";
         String name = "Hitchcock Alfred";
 
+        Category dairies = new Category(0, "dairies");
         // Set basket content
         ShoppingBasket cart = new ShoppingBasket();
         Product milk = new Product("milk", "good fresh milk",
-                "http://milk.com", 0.95, 50,0);
+                "http://milk.com", 0.95, 50,dairies);
 
         Product cream = new Product("cream", "good fresh cream",
-                "http://cream.com", 1.95, 10,0);
+                "http://cream.com", 1.95, 10,dairies);
 
         cart.addProduct(milk);
         cart.addProduct(cream);

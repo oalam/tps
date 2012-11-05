@@ -4,7 +4,7 @@
  */
 package dao;
 
-import domain.Product;
+import entity.Product;
 import java.util.List;
 
 /**

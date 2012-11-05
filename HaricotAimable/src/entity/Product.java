@@ -1,31 +1,60 @@
-package domain;
+package entity;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
-import utils.IdGenerator;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
-/**
- * @author adminl
- * @version 1.0
- * @created 03-oct.-2012 11:28:36
- */
-public class Product {
+@Entity
+public class Product implements Serializable {
 
-    private long id;
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    @Basic(optional=false)
+    private Long id;
+    
+    
+    
+    @Column(name="description")
     private String description;
+    
+    @Basic(optional=false)
+    @Column(name="name")
     private String name;
+    
+    @Column(name="photo_url", length=512)
     private String photoUrl;
+    
+    @Basic(optional=false)
+    @Column(name="price")
     private double price;
+    
+    @Basic(optional=false)
+    @Column(name="stock_quantity")
     private int stockQuantity;
-    private long category_id;
+    
+    @ManyToOne
+    @JoinColumn(name="category_fk")
+    private Category category;
+    
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date lastUpdate = new Date();
 
-    public Product( String name, String description, String photoUrl, double price, int stockQuantity, int category_id) {
+    public Product( String name, String description, String photoUrl, double price, int stockQuantity, Category category) {
         this.description = description;
         this.name = name; 
         this.photoUrl = photoUrl;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        this.category_id = category_id;
-        this.id = IdGenerator.getNextId();
+        this.category = category;
     }
 
     public Product() {
@@ -63,12 +92,12 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public long getCategory() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory(long category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void setDescription(String description) {
@@ -86,6 +115,17 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {
@@ -127,7 +167,7 @@ public class Product {
         if (this.stockQuantity != other.stockQuantity) {
             return false;
         }
-        if (!Objects.equals(this.category_id, other.category_id)) {
+        if (!Objects.equals(this.category, other.category)) {
             return false;
         }
         return true;
@@ -135,7 +175,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", description=" + description + ", name=" + name + ", photoUrl=" + photoUrl + ", price=" + price + ", stockQuantity=" + stockQuantity + ", category=" + category_id + '}';
+        return "Product{" + "id=" + id + ", description=" + description + ", name=" + name + ", photoUrl=" + photoUrl + ", price=" + price + ", stockQuantity=" + stockQuantity + ", category=" + category + '}';
     }
 
     

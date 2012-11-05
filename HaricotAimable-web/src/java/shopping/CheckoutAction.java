@@ -5,10 +5,10 @@
 package shopping;
 
 import com.opensymphony.xwork2.ActionSupport;
-import domain.Customer;
-import domain.Order;
-import domain.OrderManager;
-import domain.ShoppingBasket;
+import entity.Customer;
+import entity.Order;
+import entity.OrderManager;
+import entity.ShoppingBasket;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 

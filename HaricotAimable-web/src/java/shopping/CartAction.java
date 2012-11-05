@@ -7,8 +7,8 @@ package shopping;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MockProductDao;
 import dao.ProductDao;
-import domain.Product;
-import domain.ShoppingBasket;
+import entity.Product;
+import entity.ShoppingBasket;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 

@@ -2,8 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package entity;
 
+import entity.CategoryManager;
+import entity.Category;
+import entity.Product;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -113,10 +116,10 @@ public class CategoryManagerTest {
 
         // ajout de produits
         dairies.getProducts().add(new Product("milk", "good fresh milk",
-                "http://milk.com", 0.95, 50,0));
+                "http://milk.com", 0.95, 50,dairies));
 
         dairies.getProducts().add(new Product("cream", "good fresh cream",
-                "http://cream.com", 2.95, 10,0));
+                "http://cream.com", 2.95, 10,dairies));
 
         int productCount = dairies.getProducts().size();
         assertEquals(intialProductCount + 2, productCount);

@@ -4,10 +4,11 @@
  */
 package integration;
 
-import dao.MysqlProductDao;
+import dao.EmptyDao;
+import dao.MockProductDao;
 import dao.ProductDao;
-import domain.Category;
-import domain.Product;
+import entity.Category;
+import entity.Product;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -24,7 +25,7 @@ import static org.junit.Assert.*;
  */
 public class ProductDaoTest {
 
-    ProductDao dao = new MysqlProductDao();
+    ProductDao dao = new EmptyDao();
 
     public ProductDaoTest() {
     }
@@ -66,12 +67,12 @@ public class ProductDaoTest {
         p.setPhotoUrl("http://chrispasset.wordpress.com/2011/11/05/simple-and-easy-preparation-of-a-good-steak/&docid=z7BN63ng0ecrXM&imgurl=http://chrispasset.files.wordpress.com/2011/11/mediumrare.jpg");
         p.setPrice(5.95);
         p.setStockQuantity(9);
-        p.setCategory(2);
-        // p.setCategory(c);
+        //p.setCategory(2);
+         p.setCategory(c);
 
 
-        // productList.add(p);
-        // c.setProducts(productList);
+         productList.add(p);
+         c.setProducts(productList);
       /*  dao.create(p);
         
         

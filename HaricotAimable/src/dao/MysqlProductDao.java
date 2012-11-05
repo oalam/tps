@@ -4,8 +4,8 @@
  */
 package dao;
 
-import domain.Category;
-import domain.Product;
+import entity.Category;
+import entity.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +22,6 @@ import java.util.logging.Logger;
  */
 public class MysqlProductDao implements ProductDao {
 
-   
     public void create(Product p) {
         Connection conn = MysqlUtilities.openConnection();
         Savepoint sp = null;
@@ -40,7 +39,7 @@ public class MysqlProductDao implements ProductDao {
             PreparedStatement stmt = conn.prepareStatement(insertProduct,
                     Statement.RETURN_GENERATED_KEYS);
 
-            stmt.setLong(1, p.getCategory());
+            stmt.setLong(1, p.getCategory().getId());
             stmt.setString(2, p.getName());
             stmt.setDouble(3, p.getPrice());
             stmt.setInt(4, p.getStockQuantity());
@@ -81,7 +80,6 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-    
     public void read(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();
@@ -108,18 +106,18 @@ public class MysqlProductDao implements ProductDao {
 
                 long categoryId = rs.getLong("category_id");
 
-                /* String selectCategory = "SELECT * FROM haricot.category "
-                 + "WHERE id=" + categoryId;
+                String selectCategory = "SELECT * FROM haricot.category "
+                        + "WHERE id=" + categoryId;
 
-                 ResultSet rs2 = stmt2.executeQuery(selectCategory);
-                 Category c = new Category();
-                 while (rs2.next()) {
-                 c.setId(rs2.getInt("id"));
-                 c.setName(rs2.getString("name"));
-                 }*/
+                ResultSet rs2 = stmt2.executeQuery(selectCategory);
+                Category c = new Category();
+                while (rs2.next()) {
+                    c.setId(rs2.getInt("id"));
+                    c.setName(rs2.getString("name"));
+                }
 
-                p.setCategory(categoryId);
-                // c.getProducts().add(p);
+                p.setCategory(c);
+                c.getProducts().add(p);
 
                 System.out.println("read product " + p.toString());
             }
@@ -132,7 +130,6 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-   
     public void update(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();
@@ -151,7 +148,7 @@ public class MysqlProductDao implements ProductDao {
             stmt.setInt(3, p.getStockQuantity());
             stmt.setString(4, p.getDescription());
             stmt.setString(5, p.getPhotoUrl());
-            stmt.setLong(6, p.getCategory());
+            stmt.setLong(6, p.getCategory().getId());
             stmt.setLong(7, p.getId());
             /* Date d = new java.util.Date();
              stmt.setTimestamp(1, new Timestamp(d.getTime()));
@@ -165,7 +162,6 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-   
     public void delete(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();

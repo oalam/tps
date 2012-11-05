@@ -4,8 +4,8 @@
  */
 package dao;
 
-import domain.Category;
-import domain.Product;
+import entity.Category;
+import entity.Product;
 import java.util.ArrayList;
 import java.util.List;
 
