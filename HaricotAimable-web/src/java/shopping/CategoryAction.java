@@ -63,7 +63,11 @@ public class CategoryAction extends ActionSupport implements SessionAware {
     }
 
     public Integer getCurrentCategory() {
-	return (Integer) map.get("currentCategory");
+        Integer catId = (Integer) map.get("currentCategory");
+        if(catId == null){
+            catId = 0;
+        }
+	return catId;
     }
 
     public void setCurrentCategory(Integer currentCategory) {
