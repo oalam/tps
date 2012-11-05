@@ -1,20 +1,38 @@
-package domain;
+package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.xml.bind.annotation.XmlRootElement;
-import utils.IdGenerator;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author adminl
  * @version 1.0
  * @created 03-oct.-2012 11:28:36
  */
-public class Category {
+@Entity
+public class Category implements Serializable {
 
-    private int id ;//= IdGenerator.getNextId();
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    @Basic(optional=false)
+    private int id ;
+    
+    
+    @Basic(optional=false)
+    @Column(name="name")
     private String name = "";
+
+    
+    @OneToMany(mappedBy = "category", cascade= CascadeType.PERSIST)
     public List<Product> products = new ArrayList<>();
 
     public Category(int id, String name) {

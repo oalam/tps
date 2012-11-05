@@ -9,8 +9,8 @@ import dao.CategoryDao;
 import dao.MockCategoryDao;
 import dao.MockProductDao;
 import dao.ProductDao;
-import domain.Category;
-import domain.Product;
+import entity.Category;
+import entity.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +63,11 @@ public class CategoryAction extends ActionSupport implements SessionAware {
     }
 
     public Integer getCurrentCategory() {
-	return (Integer) map.get("currentCategory");
+        Integer catId = (Integer) map.get("currentCategory");
+        if(catId == null){
+            catId = 0;
+        }
+	return catId;
     }
 
     public void setCurrentCategory(Integer currentCategory) {

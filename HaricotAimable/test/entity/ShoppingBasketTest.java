@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package entity;
 
+import entity.ShoppingBasket;
+import entity.Product;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,35 +46,33 @@ public class ShoppingBasketTest {
         System.out.println("updateProductQuantity");
 
         ShoppingBasket cart = new ShoppingBasket();
-
+Category dairies = new Category(0, "dairies");
         short milkQuantity = 3;
         short creamQuantity = 2;
         double milkPrice = 0.95;
         double creamPrice = 2.95;
-        double attendeeTotal = milkQuantity * milkPrice + 
-                creamQuantity * creamPrice;
+        double attendeeTotal = milkQuantity * milkPrice
+                + creamQuantity * creamPrice;
 
         Product milk = new Product("milk", "good fresh milk",
-                "http://milk.com", milkPrice, 50,0);
+                "http://milk.com", milkPrice, 50, dairies);
 
         Product cream = new Product("cream", "good fresh cream",
-                "http://cream.com", creamPrice, 10,0);
+                "http://cream.com", creamPrice, 10, dairies);
 
 
         cart.addProduct(milk);
         cart.addProduct(cream);
-        
+
         cart.updateProductQuantity(milk, 0);
         cart.updateProductQuantity(cream, 5);
-        
+        cart.addProduct(milk);
         cart.updateProductQuantity(milk, milkQuantity);
         cart.updateProductQuantity(cream, creamQuantity);
-        
+
         double realtotal = cart.getTotal();
-        
+
         assertEquals(attendeeTotal, realtotal, 0.001);
         System.out.println("realtotal = " + realtotal);
     }
-
-
 }
