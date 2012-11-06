@@ -2,16 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package dao;
 
-import java.awt.print.Book;
-import java.util.ArrayList;
+import entity.BusinessObjectFactory;
+import entity.Category;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,8 +24,10 @@ import static org.junit.Assert.*;
  *
  * @author adminl
  */
-public class CategoryTest {
+public class JPACategoryDaoTest {
 
+    public JPACategoryDaoTest() {
+    }
     static EntityManagerFactory emf;
     static EntityManager em;
     static EntityTransaction tx;
@@ -51,13 +54,20 @@ public class CategoryTest {
     }
 
     /**
-     * Test of getProducts method, of class Category.
+     * Test of finalize method, of class JPACategoryDao.
      */
     @Test
-    public void testGetProducts() {
-        System.out.println("getProducts");
+    public void testFinalize() throws Exception {
+    }
 
-        Map<String, Category> categories = 
+    /**
+     * Test of getAllCategories method, of class JPACategoryDao.
+     */
+    @Test
+    public void testGetAllCategories() {
+
+
+        Map<String, Category> categories =
                 BusinessObjectFactory.createSampleCategoryList();
 
 
@@ -69,27 +79,24 @@ public class CategoryTest {
         em.persist(categories.get("meats"));
         tx.commit();
 
-        assertNotNull(categories.get("dairies").getId());
-        assertNotNull(categories.get("bakery").getId());
-        assertNotNull(categories.get("vegetables").getId());
-        assertNotNull(categories.get("meats").getId());
+        CategoryDao dao = new JPACategoryDao();
 
-        Category cat = em.find(Category.class, 
-                categories.get("dairies").getId());
-        assertNotNull(cat);
-        
-        List<Product> products = cat.getProducts();
-        assertEquals(2, products.size());
-        for (Product product : products) {
-            assertNotNull(product.getId());
-        }
-       
+        // requete JPQL to count previous cat size
+
+        List<Category> cats = dao.getAllCategories();
+
+        assertEquals(4, cats.size());
+
+
+
+
+
         tx.begin();
         em.remove(categories.get("dairies"));
         em.remove(categories.get("bakery"));
         em.remove(categories.get("vegetables"));
         em.remove(categories.get("meats"));
         tx.commit();
-        
+
     }
 }

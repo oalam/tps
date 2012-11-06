@@ -62,21 +62,15 @@ public class ProductDaoTest {
         Product p = new Product();
         p.setName("steak");
         p.setDescription("boeuf de nouvelle zelande");
-        p.setPhotoUrl("http://chrispasset.wordpress.com/2011/11/05/simple-and-easy-preparation-of-a-good-steak/&docid=z7BN63ng0ecrXM&imgurl=http://chrispasset.files.wordpress.com/2011/11/mediumrare.jpg");
-        p.setPrice(5.95);
+        p.setPhotoUrl("http://chrispasset.files.wordpress.com/2011/11/mediumrare.jpg");
+        p.setPrice(25.95);
         p.setStockQuantity(9);
-        //p.setCategory(2);
         p.setCategory(c);
 
 
         productList.add(p);
         c.setProducts(productList);
         dao.create(p);
-
-
-
-
-
 
         Product p2 = dao.getProductById((int)p.getId());
         assertNotNull(p2);
@@ -86,7 +80,6 @@ public class ProductDaoTest {
         dao.delete(p);
 
         Product p3 = dao.getProductById((int)p.getId());
-        //    assertNotSame(p,p3);
         assertNotNull(p);
         assertEquals(false, p.equals(p3));
 
@@ -97,6 +90,8 @@ public class ProductDaoTest {
         p3 = dao.getProductById((int)p.getId());
         assertEquals("beefsteak", p3.getName());
 
+        
+        // remove test objects
         dao.delete(p);
 
 

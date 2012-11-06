@@ -12,5 +12,10 @@ import java.util.List;
  * @author adminl
  */
 public interface CategoryDao {
+
     List<Category> getAllCategories();
+
+    Category getCategoryByName(String name);
+
+    int getCategoryCount();
 }

@@ -28,4 +28,14 @@ public class MockCategoryDao implements CategoryDao {
     public List<Category> getAllCategories() {
         return database;
     }
+
+    @Override
+    public Category getCategoryByName(String name) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getCategoryCount() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

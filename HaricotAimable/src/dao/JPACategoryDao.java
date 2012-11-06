@@ -4,26 +4,26 @@
  */
 package dao;
 
-import entity.Product;
+import entity.Category;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * @author adminl
  */
-public class JPAProductDao implements ProductDao {
+public class JPACategoryDao implements CategoryDao {
 
     private final String PERSISTENCE_UNIT = "HaricotAimableTestPU";
-    
     private final EntityManagerFactory emf;
     private final EntityManager em;
     private final EntityTransaction tx;
 
-    public JPAProductDao() {
+    public JPACategoryDao() {
         emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         em = emf.createEntityManager();
         tx = em.getTransaction();
@@ -37,38 +37,28 @@ public class JPAProductDao implements ProductDao {
     }
 
     @Override
-    public void create(Product p) {
-        tx.begin();
-        em.persist(p);
-        tx.commit();
+    public List<Category> getAllCategories() {
+
+
+        String jpqlQuery = "SELECT c FROM Category c";
+
+        Query query = em.createQuery(jpqlQuery);
+        List<Category> categories = query.getResultList();
+
+        return categories;
     }
 
     @Override
-    public Product read(Long id) {
-        return em.find(Product.class, id);
+    public Category getCategoryByName(String name) {
+        Query query2 = em.createNamedQuery("Category.findByName");
+        query2.setParameter("fname", "dairies");
+
+        return (Category) query2.getSingleResult();
+
     }
 
     @Override
-    public void update(Product p) {
-        tx.begin();
-        em.merge(p);
-        tx.commit();
-    }
-
-    @Override
-    public void delete(Product p) {
-        tx.begin();
-        em.remove(em.merge(p));
-        tx.commit();
-    }
-
-    @Override
-    public List<Product> getProductsByCategoryId(int categoryId) {
+    public int getCategoryCount() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Product getProductById(int productId) {
-        return read(new Long(productId));
     }
 }
