@@ -59,4 +59,24 @@ public class MockProductDao implements ProductDao {
         }
        return null;
     }
+
+    @Override
+    public void create(Product p) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Product read(Long id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void update(Product p) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void delete(Product p) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,21 +20,20 @@ import javax.persistence.OneToMany;
  * @created 03-oct.-2012 11:28:36
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Category.findByName",
+    query = "select c from Category c where c.name = :fname")})
 public class Category implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name="id")
-    @Basic(optional=false)
-    private int id ;
-    
-    
-    @Basic(optional=false)
-    @Column(name="name")
+    @Column(name = "id")
+    @Basic(optional = false)
+    private int id;
+    @Basic(optional = false)
+    @Column(name = "name")
     private String name = "";
-
-    
-    @OneToMany(mappedBy = "category", cascade= CascadeType.PERSIST)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     public List<Product> products = new ArrayList<>();
 
     public Category(int id, String name) {
@@ -92,6 +93,4 @@ public class Category implements Serializable {
         }
         return true;
     }
-    
-    
 }

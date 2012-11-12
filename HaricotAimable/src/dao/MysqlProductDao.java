@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class MysqlProductDao implements ProductDao {
 
+    @Override
     public void create(Product p) {
         Connection conn = MysqlUtilities.openConnection();
         Savepoint sp = null;
@@ -80,7 +81,9 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
-    public void read(Product p) {
+    @Override
+    public Product read(Long id) {
+        Product p = new Product();
         try {
             Connection conn = MysqlUtilities.openConnection();
 
@@ -128,8 +131,10 @@ public class MysqlProductDao implements ProductDao {
             MysqlUtilities.printSQLException(ex);
             Logger.getLogger(MysqlProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return p;
     }
 
+    @Override
     public void update(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();
@@ -162,6 +167,7 @@ public class MysqlProductDao implements ProductDao {
         }
     }
 
+    @Override
     public void delete(Product p) {
         try {
             Connection conn = MysqlUtilities.openConnection();

@@ -46,7 +46,7 @@ public class ShoppingBasketTest {
         System.out.println("updateProductQuantity");
 
         ShoppingBasket cart = new ShoppingBasket();
-Category dairies = new Category(0, "dairies");
+        Category dairies = new Category(0, "dairies");
         short milkQuantity = 3;
         short creamQuantity = 2;
         double milkPrice = 0.95;
@@ -56,10 +56,11 @@ Category dairies = new Category(0, "dairies");
 
         Product milk = new Product("milk", "good fresh milk",
                 "http://milk.com", milkPrice, 50, dairies);
+        milk.setId(101L);
 
         Product cream = new Product("cream", "good fresh cream",
                 "http://cream.com", creamPrice, 10, dairies);
-
+        cream.setId(102L);
 
         cart.addProduct(milk);
         cart.addProduct(cream);
