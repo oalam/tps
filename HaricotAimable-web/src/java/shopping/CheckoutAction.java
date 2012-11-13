@@ -4,13 +4,14 @@
  */
 package shopping;
 
+import cart.ShoppingBasket;
 import com.opensymphony.xwork2.ActionSupport;
 import entity.Customer;
-import entity.Order;
-import entity.OrderManager;
-import entity.ShoppingBasket;
 import java.util.Map;
+import javax.persistence.criteria.Order;
 import org.apache.struts2.interceptor.SessionAware;
+import service.HaricotService;
+import service.HaricotServiceLocator;
 
 /**
  *
@@ -18,6 +19,7 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class CheckoutAction extends ActionSupport implements SessionAware {
 
+    private HaricotService service = HaricotServiceLocator.getService();
     private Map<String, Object> map;
 
     @Override
@@ -47,10 +49,9 @@ public class CheckoutAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() throws Exception {
         ShoppingBasket cart = (ShoppingBasket) map.get("cart");
-        OrderManager orderManager = new OrderManager();
-
 	
-        order = orderManager.placeOrder(customer, cart);
+        order = service.placeOrder(customer, cart);
+	
         return SUCCESS;
     }
 }

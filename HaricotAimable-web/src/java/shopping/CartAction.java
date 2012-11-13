@@ -4,13 +4,13 @@
  */
 package shopping;
 
+import cart.ShoppingBasket;
 import com.opensymphony.xwork2.ActionSupport;
-import dao.MockProductDao;
-import dao.ProductDao;
 import entity.Product;
-import entity.ShoppingBasket;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
+import service.HaricotService;
+import service.HaricotServiceLocator;
 
 /**
  *
@@ -19,12 +19,13 @@ import org.apache.struts2.interceptor.SessionAware;
 public class CartAction extends ActionSupport implements SessionAware {
 
     private Map<String, Object> map;
+    private HaricotService service = HaricotServiceLocator.getService();
 
     @Override
     public void setSession(Map<String, Object> map) {
 	this.map = map;
     }
-    private int productId = -1;
+    private int productId = 0;
     private int quantity;
 
     public int getProductId() {
@@ -53,8 +54,7 @@ public class CartAction extends ActionSupport implements SessionAware {
 	    map.put("cart", cart);
 	}
 
-	ProductDao productDao = new MockProductDao();
-	Product product = productDao.getProductById(productId);
+	Product product = service.getProductById(productId);
 
 	if (product != null) {
 	    cart.addProduct(product);
@@ -78,8 +78,7 @@ public class CartAction extends ActionSupport implements SessionAware {
 	ShoppingBasket cart = (ShoppingBasket) map.get("cart");
 
 
-	ProductDao productDao = new MockProductDao();
-	Product product = productDao.getProductById(productId);
+	Product product = service.getProductById(productId);
 
 	if (product != null) {
 	    cart.addProduct(product);
