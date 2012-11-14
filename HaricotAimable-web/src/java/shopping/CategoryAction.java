@@ -5,22 +5,21 @@
 package shopping;
 
 import com.opensymphony.xwork2.ActionSupport;
-import dao.CategoryDao;
-import dao.MockCategoryDao;
-import dao.MockProductDao;
-import dao.ProductDao;
 import entity.Category;
 import entity.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
+import service.HaricotService;
+import service.HaricotServiceLocator;
 
 /**
  *
  * @author adminl
  */
 public class CategoryAction extends ActionSupport implements SessionAware {
+    HaricotService service = HaricotServiceLocator.getService();
 
     private Map<String, Object> map;
 
@@ -32,15 +31,15 @@ public class CategoryAction extends ActionSupport implements SessionAware {
     private List<Category> categories = new ArrayList<Category>();
     private List<Product> products = new ArrayList<Product>();
     private Integer currentCategory = -1;
-    // private daos
-    private CategoryDao categoryDao = new MockCategoryDao();
-    private ProductDao productDao = new MockProductDao();
+
+
 
     @Override
-    public String execute() {
-
-	categories = categoryDao.getAllCategories();
-	products = productDao.getProductsByCategoryId(getCurrentCategory());
+    public String execute() {  
+	categories = service.getAllCategories();
+        
+        int currentCategoryId = getCurrentCategory();
+	products = service.getProductsByCategoryId(currentCategoryId);
 
 	return SUCCESS;
 

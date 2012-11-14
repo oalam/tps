@@ -20,7 +20,7 @@
 
                 <s:textfield name="customer.name" label="Name"/>
 		<s:textarea name="customer.address" label="Address"/>
-		<s:textfield name="customer.paymentInfos" label="Credit card"/>
+		<s:textfield name="customer.ccNumber" label="Credit card"/>
 
 
 

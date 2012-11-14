@@ -6,11 +6,12 @@ package shopping;
 
 import com.opensymphony.xwork2.ActionSupport;
 import entity.Customer;
-import entity.Order;
-import entity.OrderManager;
-import entity.ShoppingBasket;
+import entity.CustomerOrder;
+import cart.ShoppingBasket;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
+import service.HaricotService;
+import service.HaricotServiceLocator;
 
 /**
  *
@@ -18,6 +19,7 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class CheckoutAction extends ActionSupport implements SessionAware {
 
+    HaricotService service = HaricotServiceLocator.getService();
     private Map<String, Object> map;
 
     @Override
@@ -25,8 +27,7 @@ public class CheckoutAction extends ActionSupport implements SessionAware {
         this.map = map;
     }
     private Customer customer = new Customer();
-    private Order order;
-
+    private CustomerOrder order;
 
     public Customer getCustomer() {
         return customer;
@@ -36,21 +37,20 @@ public class CheckoutAction extends ActionSupport implements SessionAware {
         this.customer = customer;
     }
 
-    public Order getOrder() {
+    public CustomerOrder getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(CustomerOrder order) {
         this.order = order;
     }
 
     @Override
     public String execute() throws Exception {
         ShoppingBasket cart = (ShoppingBasket) map.get("cart");
-        OrderManager orderManager = new OrderManager();
 
-	
-        order = orderManager.placeOrder(customer, cart);
+
+        order = service.placeOrder(customer, cart);
         return SUCCESS;
     }
 }

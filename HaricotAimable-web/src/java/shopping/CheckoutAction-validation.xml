@@ -13,7 +13,7 @@
           <message>You must enter a value.</message>
       </field-validator>
     </field>
-    <field name="customer.paymentInfos">
+    <field name="customer.ccNumber">
         <field-validator type="required">
           <message>You must enter a value.</message>
       </field-validator>
