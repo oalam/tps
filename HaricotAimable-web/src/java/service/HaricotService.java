@@ -26,4 +26,6 @@ public interface HaricotService {
     CustomerOrder placeOrder(Customer c, ShoppingBasket cart);
 
     Product getProductById(int productId);
+
+    public List<CustomerOrder> getAllOrders();
 }

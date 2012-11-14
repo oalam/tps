@@ -19,10 +19,11 @@
             <s:form action="checkout" validate="true">
 
                 <s:textfield name="customer.name" label="Name"/>
-		<s:textarea name="customer.address" label="Address"/>
-		<s:textfield name="customer.ccNumber" label="Credit card"/>
-
-
+                <s:textarea name="customer.address" label="Address"/>
+                <s:textfield name="customer.ccNumber" label="Credit card"/>
+                <s:textfield name="customer.cityRegion" label="City region"/>
+                <s:textfield name="customer.email" label="Email"/>
+                <s:textfield name="customer.phone" label="Phone"/>
 
                 <s:submit value="Purchase"/>
             </s:form>   

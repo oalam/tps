@@ -18,4 +18,19 @@
           <message>You must enter a value.</message>
       </field-validator>
     </field>
+    <field name="customer.email">
+        <field-validator type="required">
+          <message>You must enter a value.</message>
+      </field-validator>
+    </field>
+    <field name="customer.cityRegion">
+        <field-validator type="required">
+          <message>You must enter a value.</message>
+      </field-validator>
+    </field>
+    <field name="customer.phone">
+        <field-validator type="required">
+          <message>You must enter a value.</message>
+      </field-validator>
+    </field>
 </validators>

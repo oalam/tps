@@ -8,11 +8,11 @@
     <package name="admin" namespace="/admin" extends="struts-default">
         
         <action name="login" class="admin.LoginAction">
-            <result>/admin/login.jsp</result>
+            <result>/WEB-INF/admin/login.jsp</result>
         </action>
        
-       <action name="backoffice" class="admin.LoginAction">
-            <result>/admin/backoffice.jsp</result>
+       <action name="backoffice" class="admin.LoginAction" method="displayOrders">
+            <result>/WEB-INF/admin/backoffice.jsp</result>
             <result name="login" type="redirectAction">login</result>
         </action>
         

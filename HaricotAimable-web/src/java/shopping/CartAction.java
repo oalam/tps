@@ -7,7 +7,6 @@ package shopping;
 import cart.ShoppingBasket;
 import com.opensymphony.xwork2.ActionSupport;
 import entity.Product;
-import cart.ShoppingBasket;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 import service.HaricotService;
@@ -21,7 +20,7 @@ public class CartAction extends ActionSupport implements SessionAware {
 
     HaricotService service = HaricotServiceLocator.getService();
     private Map<String, Object> map;
-    private HaricotService service = HaricotServiceLocator.getService();
+
 
     @Override
     public void setSession(Map<String, Object> map) {

@@ -16,6 +16,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import session.CategoryFacade;
+import session.CustomerOrderFacade;
 import session.ProductFacade;
 
 /**
@@ -23,6 +24,8 @@ import session.ProductFacade;
  * @author adminl
  */
 public class EjbHaricotService implements HaricotService {
+    CustomerOrderFacade customerOrderFacade = lookupCustomerOrderFacadeBean();
+
 
     ProductFacade productFacade = lookupProductFacadeBean();
     CategoryFacade categoryFacade = lookupCategoryFacadeBean();
@@ -50,7 +53,12 @@ public class EjbHaricotService implements HaricotService {
 
     @Override
     public CustomerOrder placeOrder(Customer c, ShoppingBasket cart) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return customerOrderFacade.placeOrder(c, cart);
+    }
+    
+       @Override
+    public List<CustomerOrder> getAllOrders() {
+        return customerOrderFacade.findAll();
     }
 
     private CategoryFacade lookupCategoryFacadeBean() {
@@ -72,4 +80,15 @@ public class EjbHaricotService implements HaricotService {
             throw new RuntimeException(ne);
         }
     }
+
+    private CustomerOrderFacade lookupCustomerOrderFacadeBean() {
+        try {
+            Context c = new InitialContext();
+            return (CustomerOrderFacade) c.lookup("java:global/HaricotAimable-web/CustomerOrderFacade!session.CustomerOrderFacade");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
 }

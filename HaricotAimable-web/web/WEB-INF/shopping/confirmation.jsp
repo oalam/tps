@@ -19,7 +19,7 @@
 	
 	<div class="blue">
             <s:a action="welcome">Home</s:a> | 
-	    <strong>order total : <s:property value="order.total"/></strong>
+	    <strong>order total : <s:property value="order.amount"/></strong>
         </div>
     </body>
 </html>
