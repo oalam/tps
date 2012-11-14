@@ -4,11 +4,13 @@
  */
 package shopping;
 
+import cart.ShoppingBasket;
 import com.opensymphony.xwork2.ActionSupport;
 import entity.Customer;
 import entity.CustomerOrder;
 import cart.ShoppingBasket;
 import java.util.Map;
+import javax.persistence.criteria.Order;
 import org.apache.struts2.interceptor.SessionAware;
 import service.HaricotService;
 import service.HaricotServiceLocator;

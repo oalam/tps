@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/Transit">
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/Transit" password="formation" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/transit_fortissimo_test" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/Fortissimo" password="formation" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/transit_fortissimo_test" username="root"/>
+</Context>

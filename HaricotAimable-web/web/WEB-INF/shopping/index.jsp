@@ -17,7 +17,6 @@
             <s:form action="category">
                 <s:select list="categories" 
 			  name="currentCategory"
-			  headerKey="-1"  headerValue="select a category" 
 			  listKey="id" listValue="name"
 			  onchange="this.form.submit()"/>
             </s:form>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="action" namespace="/action" extends="struts-default">
+
+	<action name="welcome" >
+	    <result>/WEB-INF/index.jsp</result>
+	</action>
+        
+	<action name="searchFonction" >
+	    <result>/WEB-INF/search.jsp</result>
+	</action>
+        
+	<action name="search" class="action.SearchAction" method="search" >
+	    <result>/WEB-INF/searchResult.jsp</result>
+	</action>
+        
+        <action name="displayRoute" class="action.SearchAction" method="displayRoute" >
+	    <result>/WEB-INF/routeList.jsp</result>
+	</action>
+      
+        <action name="displayHeadSign" class="action.SearchAction" method="displayHeadSign" >
+	    <result>/WEB-INF/headsignList.jsp</result>
+	</action>
+        
+        <action name="displayTrips" class="action.SearchAction" method="displayTrips" >
+	    <result>/WEB-INF/tripResult.jsp</result>
+	</action>
+        
+        
+        
+	<action name="doUpload" class="action.UploadAction">
+	    <interceptor-ref name="basicStack"/>
+	    <interceptor-ref name="fileUpload">
+		<param name="allowedTypes">application/zip, application/x-zip, 
+		    application/x-zip-compressed, application/octet-stream, 
+		    application/x-compress, application/x-compressed, 
+		    multipart/x-zip
+		</param>
+
+	    </interceptor-ref> 
+	    <interceptor-ref name="validation"/>
+	    <interceptor-ref name="workflow"/>
+
+	    <result name="success">/WEB-INF/importComplete.jsp</result>
+	</action>
+
+
+	<action name="displayUpload" class="action.UploadAction">
+	    <result name="success">/WEB-INF/import.jsp</result>
+	</action>
+
+        
+    </package>
+
+</struts>
