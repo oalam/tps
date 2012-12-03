@@ -1,0 +1,92 @@
+/* 
+    Document   : stylesheet
+    Created on : 24 oct. 2012, 15:49:47
+    Author     : adminl
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+body {
+    background-image:url("../images/Penguins.jpg");
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position:center; 
+    background-color: #be7429;
+
+    padding: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 850px;
+    /* text-align: center;*/
+    margin: 20px auto;
+    color: #444;
+
+}
+
+h1 {
+    letter-spacing: 6px;
+    font-size: 1.6em;
+    color: #be7429;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: left;
+    letter-spacing: 6px;
+    font-size: 1.4em;
+    color: #be7429;
+    font-weight: normal;
+    width: 450px;
+}
+
+
+.blue {
+    width: 800px;
+    padding: 10px;
+    background-color: #c5e7e0;
+    font-family: sans-serif;
+    height: fit-content;
+    
+}
+
+.nav {
+    width: 800px;
+    padding: 10px;
+    background-color: #c5e7e0;
+    font-family: sans-serif;
+    height: 20px;
+    float:  bottom;
+}
+
+td {
+    padding: 10px;
+}
+
+a {
+    color: #be7429;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.popupBox {
+    position: absolute;
+    top: 170px;
+    left: 140px;
+}
+
+.popupCell {
+    background-color: #fffafa;
+}
+
+.popupCell:hover {
+    background-color: #f5ebe9;
+}
+
+.popupItem {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+}
