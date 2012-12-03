@@ -3,12 +3,14 @@ package cart;
 import entity.Product;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author adminl
  * @version 1.0
  * @created 03-oct.-2012 11:28:36
  */
+@XmlRootElement
 public class ShoppingBasket {
 
     private List<ShoppingBasketItem> items = new ArrayList<ShoppingBasketItem>();
@@ -34,7 +36,7 @@ public class ShoppingBasket {
             if (item.getProduct().getId() == product.getId()) {
 
                 if (quantity > 0) {
-                    item.updateQuantity(quantity);
+                    item.setQuantity(quantity);
                     return;
                 } else {
                     // set a reference (memory address) 
@@ -64,4 +66,10 @@ public class ShoppingBasket {
     public List<ShoppingBasketItem> getItems() {
         return items;
     }
+
+    public void setItems(List<ShoppingBasketItem> items) {
+        this.items = items;
+    }
+    
+    
 }
