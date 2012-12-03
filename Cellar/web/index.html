@@ -1,0 +1,61 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Le cellier</title>
+        <link type="text/css" rel="stylesheet" href="css/styles.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+    </head>
+    <body>
+        <div class="header">
+            <input type="text" id="searchKey"/>
+            <button id="btnSearch">Search</button>
+            <button id="btnAdd">New Wine</button>
+        
+        </div>
+
+        <div class="leftArea">
+            <ul id="wineList"></ul>
+        </div>
+
+        <div class="mainArea">
+            <form id="wineForm">
+                <label>Id:</label>
+                <input id="wineId" type="text" name="id" value="" disabled/>
+
+                <label>Name:</label>
+                <input id="name" type="text" name="name" value="" required/>
+
+                <label>Grapes:</label>
+                <input id="grapes" type="text" name="grapes"/>
+
+                <label>Country</label>
+                <input id="country" type="text" name="country"/>
+
+                <label>Region:</label>
+                <input id="region" type="text" name="region"/>
+
+                <label>Year:</label>
+                <input id="year" type="text" name="year"/>
+
+                <button id="btnSave">Save</button>
+                <button id="btnDelete">Delete</button>
+            </form>
+        </div>
+
+        <div class="rightArea">
+
+            <img id="pic" src="" width="250" height="300"/>
+            <label>Description:</label>
+            <textarea id="description"  name="description"></textarea>
+
+        </div>
+
+        <script src="js/jquery-1.7.1.min.js"></script>
+        <script src="js/main.js"></script>   
+    </body>
+</html>
