@@ -1,4 +1,4 @@
-var rootPath = 'http://localhost:8080/Cellar/webresources/entity.wine';
+var rootPath = 'http://localhost:8080/cellar/webresources/entity.wine';
 var currentWine;
 
 
